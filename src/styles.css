@@ -1,0 +1,27 @@
+.numberflip-digit-container {
+    display: flex;
+    overflow: hidden;
+    position: relative;
+    transition-property: opacity;
+    transition-timing-function: cubic-bezier(0.4, 0, 0.2, 1);
+    transition-duration: 1000ms;
+    opacity: 1;
+}
+
+.numberflip-digit-container-value {
+    display: flex;
+    flex-direction: column;
+    position: absolute;
+    transition-property: transform;
+    transition-timing-function: cubic-bezier(0.4, 0, 0.2, 1);
+    transition-duration: 1000ms;
+}
+
+.numberflip-digit-container-value span {
+    text-align: center;
+}
+
+/* Needed in order to make the parent element occupy enough space to display the digit  */
+.numberflip-digit-container-value-hidden {
+    visibility: hidden;
+}
