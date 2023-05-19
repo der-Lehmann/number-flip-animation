@@ -1,8 +1,9 @@
 {
   "name": "number-flip-animation",
   "version": "1.0.0",
-  "description": "Small typescript package for animating the change of a number using a flip/slide animation. - MIT licensed",
-  "main": "index.js",
+  "description": "Small typescript package for animating the change of a number using a flip/slide animation.",
+  "main": "dist/index.js",
+  "types": "dist/index.d.ts",
   "scripts": {
     "clean": "rm -rf ./dist",
     "build": "npm run clean && npm run format && tsc && cp ./src/styles.css ./dist",
@@ -13,9 +14,19 @@
   "files": [
     "dist/**/*"
   ],
-  "keywords": [],
-  "author": "",
-  "license": "ISC",
+  "keywords": [
+    "number",
+    "animation",
+    "flip",
+    "slide",
+    "vanilla"
+  ],
+  "author": "der-Lehmann",
+  "license": "MIT",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/der-Lehmann/number-flip-animation.git"
+  },
   "devDependencies": {
     "prettier": "^2.8.8",
     "tslint": "^6.1.3",
