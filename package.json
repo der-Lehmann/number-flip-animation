@@ -1,6 +1,6 @@
 {
   "name": "number-flip-animation",
-  "version": "1.0.1",
+  "version": "1.1.0",
   "description": "Small typescript package for animating the change of a number using a flip/slide animation.",
   "main": "dist/index.js",
   "types": "dist/index.d.ts",
@@ -18,8 +18,7 @@
     "number",
     "animation",
     "flip",
-    "slide",
-    "vanilla"
+    "slide"
   ],
   "author": "der-Lehmann",
   "license": "MIT",

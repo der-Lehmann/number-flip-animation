@@ -1,27 +1,38 @@
 .numberflip-digit-container {
-    display: flex;
-    overflow: hidden;
-    position: relative;
-    transition-property: opacity;
-    transition-timing-function: cubic-bezier(0.4, 0, 0.2, 1);
-    transition-duration: 1000ms;
-    opacity: 1;
+  display: flex;
+  overflow: hidden;
+  position: relative;
+  transition-property: opacity;
+  transition-duration: 200ms; /* Could be ommitted. The duration is set dynamically  */
 }
 
 .numberflip-digit-container-value {
-    display: flex;
-    flex-direction: column;
-    position: absolute;
-    transition-property: transform;
-    transition-timing-function: cubic-bezier(0.4, 0, 0.2, 1);
-    transition-duration: 1000ms;
+  display: flex;
+  flex-direction: column;
+  position: absolute;
+  transition-property: transform;
+  transition-duration: 1000ms; /* Could be ommitted. The duration is set dynamically  */
+  transition-timing-function: cubic-bezier(0.4, 0, 0.2, 1);
 }
 
+/* Needed for the numbers to be spaced evenly between one another. */
 .numberflip-digit-container-value span {
-    text-align: center;
+  text-align: center;
 }
 
-/* Needed in order to make the parent element occupy enough space to display the digit  */
+/* 
+  Needed in order to make the parent element occupy enough space to display the digit.
+  Otherwise the parent would have a width and height of 0 due to the position being absolute of the .numberflip-digit-container-value element
+*/
 .numberflip-digit-container-value-hidden {
-    visibility: hidden;
+  visibility: hidden;
+}
+
+@keyframes fade-out {
+  0% {
+    opacity: 1;
+  }
+  100% {
+    opacity: 0;
+  }
 }

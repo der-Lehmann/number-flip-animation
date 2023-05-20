@@ -1,7 +1,7 @@
 # number-flip-animation
 
 This package makes it easy to transition between to numbers using a flip/slide animation.<br>
-When changing between two numbers the number of digits can differ.<br>
+The new number being changed to does not need to have the same number of digits as the number being changed from.<br>
 Leading zeros are not being used.<br>
 <br><br>
 ![](./assets/demo1.gif)
@@ -16,7 +16,7 @@ npm install number-flip-animation
 
 <br><br>
 
-## Usage
+## Basic usage
 
 <br>
 
@@ -26,53 +26,82 @@ Import the module
 import { NumberFlip } from 'number-flip-animation';
 ```
 
-Create a new class instance and provide the Id of an HTML Element.
-The element will be used to inject the necessary html.
+Create a new class instance and provide an HTMLElement.
 
 ```javascript
 const numberFlip = new NumberFlip({
-  rootElement: 'id-of-html-element',
+  rootElement: document.getElementById('number-flip'),
 });
 ```
 
 To set a number or change the current number, call `setNumberTo` on the instance
 
 ```javascript
-numberFlip.setNumberTo(123);
+numberFlip.setNumberTo({
+  newNumber: 123,
+});
 ```
 
 <br><br>
 
-## Advanced usage
+## Options
 
 <br>
 
-There are two animations being used when transitioning between two numbers.
+- `rootElement`: An `HTMLElement` Object used to inject the necessary html nodes.
+- `newNumber`: The number that should be changed to.
+- `durationFlip`: The duration in milliseconds of the flip/slide transition
+- `durationOpacity`: The duration in milliseconds of the fade out transition
+- `clearRootElement`: Whether the child elements of the `rootElement` should be deleted
+- `elements`: An `HTMLCollection` or `NodeList` of elements that should be changed (Only used in `setNumberForElements`)
+- `attributeName`: The name of the data attribute that should be used to get the number from the element (Only used in `setNumberForElements`)
 
-- Flip/Slide (When chaning one digit to the next.)
-- Fade out (When the number being changed to has less digits than the currently set number the unnecessary digits will fade out.)
+<br><br>
+
+## Methods
 
 <br>
 
-It is possible to customize the duration of these animations.<br>
-Either when creating the instance.
+The NumberFlip class accepts options through the constructor and two public methods.<br>
+
+### Constructor
 
 ```javascript
 const numberFlip = new NumberFlip({
-  rootElement: 'id-of-html-element',
-  duration: 1000, // in milliseconds
-  opacityDuration: 200, // in milliseconds
+  rootElement: document.getElementById('number-flip'),
+  newNumber: 123,
+  durationFlip: 1000,
+  durationOpacity: 200,
+  clearRootElement: false,
 });
 ```
 
-or when chaning to another number.
+<br>
+
+### setNumberTo
 
 ```javascript
-numberFlip.setNumberTo(
-  123, // new number
-  1000, // duration in millisseconds for flip/slide animation
-  200, // duration in milliseconds for fade out animation
-);
+numberFlip.setNumberTo({
+  newNumber: 123,
+  rootElement: this.rootElement,
+  durationFlip: this.durationFlip,
+  durationOpacity: this.durationOpacity,
+  clearRootElement: false,
+});
+```
+
+<br>
+
+### setNumberForElements
+
+```javascript
+numberFlip.setNumberForElements({
+  elements: document.getElementsByClassName('number-flip'),
+  attributeName: 'data-number',
+  durationFlip: 1000,
+  durationOpacity: 200,
+  clearRootElement: false,
+});
 ```
 
 <br><br>
