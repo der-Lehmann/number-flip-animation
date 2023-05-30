@@ -20,10 +20,11 @@ npm install number-flip-animation
 
 <br>
 
-Import the module
+Import the module and the css file
 
 ```javascript
 import { NumberFlip } from 'number-flip-animation';
+import 'number-flip-animation/dist/styles.css';
 ```
 
 Create a new class instance and provide an HTMLElement.
@@ -82,10 +83,10 @@ const numberFlip = new NumberFlip({
 
 ```javascript
 numberFlip.setNumberTo({
+  rootElement: document.getElementById('number-flip'),
   newNumber: 123,
-  rootElement: this.rootElement,
-  durationFlip: this.durationFlip,
-  durationOpacity: this.durationOpacity,
+  durationFlip: 1000,
+  durationOpacity: 200,
   clearRootElement: false,
 });
 ```

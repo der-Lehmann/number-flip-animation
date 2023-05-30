@@ -1,4 +1,3 @@
-import './styles.css';
 import type { NumberFlipConstrucotorOptions, NumberFlipSingleOptions, NumberFlipMultipleOptions } from './types';
 
 export class NumberFlip {
