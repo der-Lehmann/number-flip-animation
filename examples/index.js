@@ -1,10 +1,11 @@
 import { NumberFlip } from './dist/index.js';
 
-const numberFlip = new NumberFlip({ rootElement: document.getElementById('number-flip') });
+const numberFlip = new NumberFlip({ rootElement: document.getElementById('number-flip')});
+const numberInput = document.getElementById('number-input');
+const button = document.getElementById('button');
+button.addEventListener('click', changeNumber);
 
-function setNumber() {
-  numberFlip.setNumber(Math.floor(Math.random() * 10000));
+function changeNumber() {
+  let newNumber = numberInput.value;
+  numberFlip.setNumber(newNumber);
 }
-
-window.setInterval(setNumber, 2000);
-setNumber();
