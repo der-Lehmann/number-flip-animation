@@ -28,7 +28,7 @@
   visibility: hidden;
 }
 
-@keyframes fade-out {
+@keyframes numberflip-animation-fade-out {
   0% {
     opacity: 1;
   }
