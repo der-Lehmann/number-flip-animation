@@ -6,8 +6,7 @@
   "main": "dist/index.js",
   "types": "dist/index.d.ts",
   "scripts": {
-    "clean": "rm -rf ./dist",
-    "build": "npm run clean && npm run format && tsc && cp ./src/styles.css ./dist",
+    "build": "npm run format && tsc && cp ./src/styles.css ./dist",
     "format": "prettier --write \"src/**/*.ts\"",
     "lint": "tslint -p tsconfig.json",
     "prepare": "npm run build"
