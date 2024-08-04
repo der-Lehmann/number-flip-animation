@@ -2,6 +2,7 @@ export class NumberFlip {
   private rootElement: HTMLElement;
   private durationSlide: number;
   private durationFade: number;
+  private decimalSeparator: string;
   private wrapperClassname: string;
   private digitClassname: string;
 
@@ -11,6 +12,7 @@ export class NumberFlip {
     durationFade,
     initialNumber,
     animateInitialNumber = true,
+    decimalSeparator = '.',
     wrapperClassname = 'numberflip-digit-container',
     digitClassname = 'numberflip-digit-container-value',
   }: {
@@ -19,12 +21,14 @@ export class NumberFlip {
     durationFade: number;
     initialNumber: number | undefined;
     animateInitialNumber: boolean;
+    decimalSeparator: string;
     wrapperClassname: string;
     digitClassname: string;
   }) {
     this.rootElement = rootElement;
     this.durationSlide = durationSlide;
     this.durationFade = durationFade;
+    this.decimalSeparator = decimalSeparator;
     this.wrapperClassname = wrapperClassname;
     this.digitClassname = digitClassname;
 
@@ -50,7 +54,7 @@ export class NumberFlip {
         'afterbegin',
         `<div class="${this.wrapperClassname}">` +
           /*
-            Needed in order to make the parent element occupy enough space to display the digit.
+            The span with visibility hidden is needed in order to make the parent element occupy enough space to display the digit.
             Otherwise the parent would have a width and height of 0 due to the absolute position of the .numberflip-digit-container-value element
           */
           `<span style="visibility: hidden;">0</span>
@@ -65,6 +69,7 @@ export class NumberFlip {
                 <span>2</span>
                 <span>1</span>
                 <span>0</span>
+                <span>${this.decimalSeparator}</span>
             </div>
         </div>`,
       );
@@ -93,18 +98,24 @@ export class NumberFlip {
 
     for (let i = 0; i < digitContainers.length; i++) {
       const digitContainer = digitContainers[i] as HTMLElement;
-      const translate = this.calculateTranslateY(digits[i]);
+      const digit = typeof digits[i] === 'number' ? digits[i] : -1;
 
-      setTimeout(() => (digitContainer.style.transform = `translateY(${translate}%)`), 0);
+      // typeof check needed for typescripts typechecker
+      if (typeof digit == 'number') {
+        const translate = this.calculateTranslateY(digit);
+        setTimeout(() => (digitContainer.style.transform = `translateY(${translate}%)`), 0);
+      }
     }
   }
 
-  private getDigitsOfNumber(number: number): number[] {
+  private getDigitsOfNumber(number: number): Array<number | string> {
     const digits = number.toString().split('');
-    return digits.map(Number);
+    return digits.map((char) => (char === '.' ? '.' : parseInt(char, 10)));
   }
 
   private calculateTranslateY(digit: number) {
-    return (-90 + digit * 10).toString();
+    // 11 is the number of span elements defined above in the adjustAmountOfDigitContainers method
+    const heightOfSpan = 100 / 11;
+    return (-10 * heightOfSpan + (digit + 1) * heightOfSpan).toString();
   }
 }
