@@ -22,7 +22,7 @@
 
 /* 
   Needed in order to make the parent element occupy enough space to display the digit.
-  Otherwise the parent would have a width and height of 0 due to the position being absolute of the .numberflip-digit-container-value element
+  Otherwise the parent would have a width and height of 0 due to the absolute position of the .numberflip-digit-container-value element
 */
 .numberflip-digit-container-value-hidden {
   visibility: hidden;
