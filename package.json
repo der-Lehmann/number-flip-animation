@@ -7,9 +7,10 @@
   "types": "dist/index.d.ts",
   "scripts": {
     "build": "npm run format && tsc && cp ./src/styles.css ./dist",
-    "format": "prettier --write \"src/**/*.ts\"",
+    "format": "prettier --write src examples",
     "lint": "tslint -p tsconfig.json",
-    "prepare": "npm run build"
+    "prepare": "npm run build",
+    "serve": "npm run build && cp -r ./dist ./examples && http-server ./examples --port 8080"
   },
   "files": [
     "dist/**/*"
@@ -27,6 +28,7 @@
     "url": "https://github.com/der-Lehmann/number-flip-animation.git"
   },
   "devDependencies": {
+    "http-server": "^14.1.1",
     "prettier": "^2.8.8",
     "tslint": "^6.1.3",
     "tslint-config-prettier": "^1.18.0",
