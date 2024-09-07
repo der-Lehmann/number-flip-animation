@@ -39,13 +39,13 @@ export class NumberFlip {
     }
   }
 
-  public setNumber(number: number, animate: boolean = true): void {
-    this.adjustAmountOfDigitContainers(number);
-    this.setDigitInContainers(number, animate);
+  public setNumber(num: number, animate: boolean = true): void {
+    this.adjustAmountOfDigitContainers(num);
+    this.setDigitInContainers(num, animate);
   }
 
-  private adjustAmountOfDigitContainers(number: number): void {
-    const numberOfDigits = this.getDigitsOfNumber(number).length;
+  private adjustAmountOfDigitContainers(num: number): void {
+    const numberOfDigits = this.getDigitsOfNumber(num).length;
     let countOfDigitContainers = this.rootElement.getElementsByClassName(this.wrapperClassname).length;
 
     // Create digit containers
@@ -92,8 +92,8 @@ export class NumberFlip {
     }
   }
 
-  private setDigitInContainers(number: number, animate: boolean): void {
-    const digits = this.getDigitsOfNumber(number);
+  private setDigitInContainers(num: number, animate: boolean): void {
+    const digits = this.getDigitsOfNumber(num);
     const digitContainers = this.rootElement.getElementsByClassName(this.digitClassname);
 
     for (let i = 0; i < digitContainers.length; i++) {
@@ -101,7 +101,7 @@ export class NumberFlip {
       const digit = typeof digits[i] === 'number' ? digits[i] : -1;
 
       // typeof check needed for typescripts typechecker
-      if (typeof digit == 'number') {
+      if (typeof digit === 'number') {
         const translate = this.calculateTranslateY(digit);
         setTimeout(() => {
           digitContainer.style.transitionDuration = this.durationSlide + 'ms';
@@ -111,8 +111,8 @@ export class NumberFlip {
     }
   }
 
-  private getDigitsOfNumber(number: number): Array<number | string> {
-    const digits = number.toString().split('');
+  private getDigitsOfNumber(num: number): (number | string)[] {
+    const digits = num.toString().split('');
     return digits.map((char) => (char === '.' ? '.' : parseInt(char, 10)));
   }
 
