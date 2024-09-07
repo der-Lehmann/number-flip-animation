@@ -51,7 +51,7 @@ export class NumberFlip {
     // Create digit containers
     while (countOfDigitContainers < numberOfDigits) {
       this.rootElement.insertAdjacentHTML(
-        'afterbegin',
+        'beforeend',
         `<div class="${this.wrapperClassname}">` +
           /*
             The span with visibility hidden is needed in order to make the parent element occupy enough space to display the digit.
