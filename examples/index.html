@@ -8,10 +8,18 @@
     <link rel="stylesheet" href="./dist/tailwind.css" />
     <link rel="stylesheet" href="./dist/styles.css" />
   </head>
-  <body>
-    <div id="number-flip"></div>
-    <input id="number-input" type="number" />
-    <button id="button">Set number</button>
+  <body class="bg-gray-100 flex items-center justify-center min-h-screen">
+    <div class="bg-white p-8 max-w-7xl rounded shadow-md">
+      <h4 class="text-xl mb-2">Random number change</h4>
+      <div class="border-b w-full h-px mb-4"></div>
+      <div id="number-flip-1"></div>
+      <div class="my-8"></div>
+      <h4 class="text-xl mb-2">Manually set a number</h4>
+      <div class="border-b w-full h-px mb-4"></div>
+      <div id="number-flip-2" class="mb-2 h-7"></div>
+      <input id="number-input" type="number" class="border rounded-sm px-2 py-1 mr-2" placeholder="Number" />
+      <button id="button" class="bg-blue-500 text-white px-4 py-1 rounded-sm hover:bg-blue-600">Set number</button>
+    </div>
     <script type="module" src="./index.js"></script>
   </body>
 </html>
