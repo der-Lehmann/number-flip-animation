@@ -8,8 +8,8 @@ export class NumberFlip {
 
   constructor({
     rootElement,
-    durationSlide,
-    durationFade,
+    durationSlide = 1000,
+    durationFade = 200,
     initialNumber,
     animateInitialNumber = true,
     decimalSeparator = '.',
@@ -103,7 +103,10 @@ export class NumberFlip {
       // typeof check needed for typescripts typechecker
       if (typeof digit == 'number') {
         const translate = this.calculateTranslateY(digit);
-        setTimeout(() => (digitContainer.style.transform = `translateY(${translate}%)`), 0);
+        setTimeout(() => {
+          digitContainer.style.transitionDuration = this.durationSlide + 'ms';
+          digitContainer.style.transform = `translateY(${translate}%)`;
+        }, 0);
       }
     }
   }
