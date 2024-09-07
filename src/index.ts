@@ -104,7 +104,8 @@ export class NumberFlip {
       if (typeof digit === 'number') {
         const translate = this.calculateTranslateY(digit);
         setTimeout(() => {
-          digitContainer.style.transitionDuration = this.durationSlide + 'ms';
+          const durationSlide = animate ? this.durationSlide : 0;
+          digitContainer.style.transitionDuration = durationSlide + 'ms';
           digitContainer.style.transform = `translateY(${translate}%)`;
         }, 0);
       }
