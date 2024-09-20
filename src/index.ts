@@ -17,13 +17,13 @@ export class NumberFlip {
     digitClassname = 'numberflip-digit-container-value',
   }: {
     rootElement: HTMLElement;
-    durationSlide: number;
-    durationFade: number;
-    initialNumber: number | undefined;
-    animateInitialNumber: boolean;
-    decimalSeparator: string;
-    wrapperClassname: string;
-    digitClassname: string;
+    durationSlide?: number;
+    durationFade?: number;
+    initialNumber?: number;
+    animateInitialNumber?: boolean;
+    decimalSeparator?: string;
+    wrapperClassname?: string;
+    digitClassname?: string;
   }) {
     this.rootElement = rootElement;
     this.durationSlide = durationSlide;
