@@ -40,7 +40,7 @@ export class NumberFlip {
 
     this.rootElement.style.display = 'flex';
 
-    if (initialNumber) {
+    if (initialNumber !== undefined) {
       this.setNumber(initialNumber, animateInitialNumber);
     }
   }
