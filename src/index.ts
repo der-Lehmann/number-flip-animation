@@ -1,4 +1,4 @@
-type Formatter = (num: number) => string;
+export type Formatter = (num: number) => string;
 
 export class NumberFlip {
   private rootElement: HTMLElement;
