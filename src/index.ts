@@ -25,7 +25,7 @@ export class NumberFlip {
     durationFade?: number;
     initialNumber?: number;
     animateInitialNumber?: boolean;
-    numberFormatter: Formatter;
+    numberFormatter?: Formatter;
     decimalSeparator?: string;
     wrapperClassname?: string;
     digitClassname?: string;
