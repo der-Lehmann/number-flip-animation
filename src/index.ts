@@ -1,7 +1,10 @@
+type Formatter = (num: number) => string;
+
 export class NumberFlip {
   private rootElement: HTMLElement;
   private durationSlide: number;
   private durationFade: number;
+  private numberFormatter: Formatter;
   private decimalSeparator: string;
   private wrapperClassname: string;
   private digitClassname: string;
@@ -12,6 +15,7 @@ export class NumberFlip {
     durationFade = 200,
     initialNumber,
     animateInitialNumber = true,
+    numberFormatter = (num) => num.toString(),
     decimalSeparator = '.',
     wrapperClassname = 'numberflip-digit-container',
     digitClassname = 'numberflip-digit-container-value',
@@ -21,6 +25,7 @@ export class NumberFlip {
     durationFade?: number;
     initialNumber?: number;
     animateInitialNumber?: boolean;
+    numberFormatter: Formatter;
     decimalSeparator?: string;
     wrapperClassname?: string;
     digitClassname?: string;
@@ -28,6 +33,7 @@ export class NumberFlip {
     this.rootElement = rootElement;
     this.durationSlide = durationSlide;
     this.durationFade = durationFade;
+    this.numberFormatter = numberFormatter;
     this.decimalSeparator = decimalSeparator;
     this.wrapperClassname = wrapperClassname;
     this.digitClassname = digitClassname;
@@ -113,7 +119,7 @@ export class NumberFlip {
   }
 
   private getDigitsOfNumber(num: number): (number | string)[] {
-    const digits = num.toString().split('');
+    const digits = this.numberFormatter(num).split('');
     return digits.map((char) => (char === '.' ? '.' : parseInt(char, 10)));
   }
 

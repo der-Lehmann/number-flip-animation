@@ -14,11 +14,28 @@ setInterval(setRandomNumber, 2000);
 
 // Example 2: Manually set number (existing code)
 const numberFlip2 = new NumberFlip({ rootElement: document.getElementById('number-flip-2'), initialNumber: 12345 });
-const numberInput = document.getElementById('number-input');
-const button = document.getElementById('button');
-button.addEventListener('click', changeNumber);
+const numberInput2 = document.getElementById('number-input-2');
+const button2 = document.getElementById('button-2');
+button2.addEventListener('click', changeNumber2);
 
-function changeNumber() {
-  let newNumber = numberInput.value;
+function changeNumber2() {
+  let newNumber = numberInput2.value;
   numberFlip2.setNumber(newNumber);
+}
+
+// Example 3: Manually set number (existing code)
+const numberFlip3 = new NumberFlip({
+  rootElement: document.getElementById('number-flip-3'),
+  initialNumber: 2.145,
+  numberFormatter: (number) => {
+    return parseFloat(number).toFixed(6);
+  },
+});
+const numberInput3 = document.getElementById('number-input-3');
+const button3 = document.getElementById('button-3');
+button3.addEventListener('click', changeNumber3);
+
+function changeNumber3() {
+  let newNumber = numberInput3.value;
+  numberFlip3.setNumber(newNumber);
 }
