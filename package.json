@@ -6,12 +6,12 @@
   "main": "dist/index.js",
   "types": "dist/index.d.ts",
   "scripts": {
-    "build": "npm run format && tsc && cp ./src/styles.css ./dist",
+    "build": "npm run format && tsc && npx cp-cli ./src/styles.css ./dist/styles.css",
     "format": "prettier --write src examples",
     "lint": "tslint -p tsconfig.json",
     "prepare": "npm run build",
     "build:tailwind": "tailwindcss -i ./examples/tailwind.css -o ./examples/dist/tailwind.css --minify",
-    "serve": "npm run build && npm run build:tailwind && cp -r ./dist ./examples && http-server ./examples --port 8080" 
+    "serve": "npm run build && npm run build:tailwind && cp -r ./dist ./examples && http-server ./examples --port 8080"
   },
   "files": [
     "dist/**/*"
@@ -30,6 +30,7 @@
   },
   "devDependencies": {
     "autoprefixer": "^10.4.20",
+    "cp-cli": "^2.0.0",
     "http-server": "^14.1.1",
     "postcss": "^8.4.45",
     "prettier": "^2.8.8",
