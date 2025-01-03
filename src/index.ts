@@ -1,10 +1,8 @@
-export type Formatter = (num: number) => string;
-
 export class NumberFlip {
   private rootElement: HTMLElement;
   private durationSlide: number;
   private durationFade: number;
-  private numberFormatter: Formatter;
+  private numberFormatter: (num: number) => string;
   private decimalSeparator: string;
   private wrapperClassname: string;
   private digitClassname: string;
@@ -25,7 +23,7 @@ export class NumberFlip {
     durationFade?: number;
     initialNumber?: number;
     animateInitialNumber?: boolean;
-    numberFormatter?: Formatter;
+    numberFormatter?: (num: number) => string;
     decimalSeparator?: string;
     wrapperClassname?: string;
     digitClassname?: string;
