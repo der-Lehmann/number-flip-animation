@@ -4,6 +4,12 @@
   position: relative;
   transition-property: opacity;
   transition-duration: 200ms; /* Could be ommitted. The duration is set dynamically  */
+  &.dot {
+    &,
+    & * {
+      width: 10px;
+    }
+  }
 }
 
 .numberflip-digit-container-value {
