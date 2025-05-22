@@ -56,12 +56,12 @@ export class NumberFlip {
     while (countOfDigitContainers < numberOfDigits) {
       this.rootElement.insertAdjacentHTML(
         'beforeend',
-        `<div class="${this.wrapperClassname}">` +
-          /*
-            The span with visibility hidden is needed in order to make the parent element occupy enough space to display the digit.
-            Otherwise the parent would have a width and height of 0 due to the absolute position of the .numberflip-digit-container-value element
-          */
-          `<span style="visibility: hidden;">0</span>
+        `<div class="${this.wrapperClassname} ${String(num)[countOfDigitContainers] === '.' ? 'dot' : ''}">` +
+        /*
+          The span with visibility hidden is needed in order to make the parent element occupy enough space to display the digit.
+          Otherwise the parent would have a width and height of 0 due to the absolute position of the .numberflip-digit-container-value element
+        */
+        `<span style="visibility: hidden;">0</span>
             <div class="${this.digitClassname}" style="transform: translateY(-100%);">
                 <span>9</span>
                 <span>8</span>
