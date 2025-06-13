@@ -4,6 +4,7 @@ export class NumberFlip {
   private durationFade: number;
   private numberFormatter: (num: number) => string;
   private decimalSeparator: string;
+  private thousandSeparator: string;
   private wrapperClassname: string;
   private digitClassname: string;
 
@@ -15,6 +16,7 @@ export class NumberFlip {
     animateInitialNumber = true,
     numberFormatter = (num) => num.toString(),
     decimalSeparator = '.',
+    thousandSeparator = ',',
     wrapperClassname = 'numberflip-digit-container',
     digitClassname = 'numberflip-digit-container-value',
   }: {
@@ -25,6 +27,7 @@ export class NumberFlip {
     animateInitialNumber?: boolean;
     numberFormatter?: (num: number) => string;
     decimalSeparator?: string;
+    thousandSeparator?: string;
     wrapperClassname?: string;
     digitClassname?: string;
   }) {
@@ -33,6 +36,7 @@ export class NumberFlip {
     this.durationFade = durationFade;
     this.numberFormatter = numberFormatter;
     this.decimalSeparator = decimalSeparator;
+    this.thousandSeparator = thousandSeparator;
     this.wrapperClassname = wrapperClassname;
     this.digitClassname = digitClassname;
 
@@ -56,12 +60,17 @@ export class NumberFlip {
     while (countOfDigitContainers < numberOfDigits) {
       this.rootElement.insertAdjacentHTML(
         'beforeend',
-        `<div class="${this.wrapperClassname} ${String(num)[countOfDigitContainers] === '.' ? 'dot' : ''}">` +
-        /*
+        `<div class="${this.wrapperClassname} ${
+          String(num)[countOfDigitContainers] === this.decimalSeparator ||
+          String(num)[countOfDigitContainers] === this.thousandSeparator
+            ? 'dot'
+            : ''
+        }">` +
+          /*
           The span with visibility hidden is needed in order to make the parent element occupy enough space to display the digit.
           Otherwise the parent would have a width and height of 0 due to the absolute position of the .numberflip-digit-container-value element
         */
-        `<span style="visibility: hidden;">0</span>
+          `<span style="visibility: hidden;">0</span>
             <div class="${this.digitClassname}" style="transform: translateY(-100%);">
                 <span>9</span>
                 <span>8</span>
@@ -74,6 +83,7 @@ export class NumberFlip {
                 <span>1</span>
                 <span>0</span>
                 <span>${this.decimalSeparator}</span>
+                <span>${this.thousandSeparator}</span>
             </div>
         </div>`,
       );
@@ -102,7 +112,7 @@ export class NumberFlip {
 
     for (let i = 0; i < digitContainers.length; i++) {
       const digitContainer = digitContainers[i] as HTMLElement;
-      const digit = typeof digits[i] === 'number' ? digits[i] : -1;
+      const digit = digits[i] === this.thousandSeparator ? -2 : digits[i] === this.decimalSeparator ? -1 : digits[i];
 
       // typeof check needed for typescripts typechecker
       if (typeof digit === 'number') {
@@ -118,12 +128,19 @@ export class NumberFlip {
 
   private getDigitsOfNumber(num: number): (number | string)[] {
     const digits = this.numberFormatter(num).split('');
-    return digits.map((char) => (char === '.' ? '.' : parseInt(char, 10)));
+    return digits.map((char) => {
+      if (char === this.decimalSeparator) {
+        return this.decimalSeparator;
+      } else if (char === this.thousandSeparator) {
+        return this.thousandSeparator;
+      }
+      return parseInt(char, 10);
+    });
   }
 
   private calculateTranslateY(digit: number) {
-    // 11 is the number of span elements defined above in the adjustAmountOfDigitContainers method
-    const heightOfSpan = 100 / 11;
+    // 12 is the number of span elements defined above in the adjustAmountOfDigitContainers method
+    const heightOfSpan = 100 / 12;
     return (-10 * heightOfSpan + (digit + 1) * heightOfSpan).toString();
   }
 }
