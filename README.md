@@ -53,7 +53,6 @@ The method accepts the number which should be set and an optional boolean, which
 
 If you would like to contribute to this package, these are the things that you could work on:
 - Incorporate the option to display a leading minus sign so that negative numbers can be displayed.
-- Incorporate the option to display thousand separators.
 
 
 ## Similar Packages
