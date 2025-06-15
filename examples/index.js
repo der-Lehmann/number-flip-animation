@@ -26,9 +26,11 @@ function changeNumber2() {
 // Example 3: Manually set number (existing code)
 const numberFlip3 = new NumberFlip({
   rootElement: document.getElementById('number-flip-3'),
-  initialNumber: 2.145,
+  initialNumber: 1234.145,
   numberFormatter: (number) => {
-    return parseFloat(number).toFixed(6);
+    // addCommas
+    const parts = parseFloat(number).toFixed(6).split('.');
+    return parts[0].replace(/(\d{1,3})(?=(?:\d{3})+(?!\d))/g, '$1,') + (parts.length > 1 ? '.' + parts[1] : '');
   },
 });
 const numberInput3 = document.getElementById('number-input-3');
