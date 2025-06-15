@@ -61,7 +61,7 @@ export class NumberFlip {
       this.rootElement.insertAdjacentHTML(
         'beforeend',
         `<div class="${this.wrapperClassname}">` +
-        /*
+          /*
           The span with visibility hidden is needed in order to make the parent element occupy enough space to display the digit.
           Otherwise the parent would have a width and height of 0 due to the absolute position of the .numberflip-digit-container-value element
         */
@@ -119,7 +119,9 @@ export class NumberFlip {
         }, 0);
       }
 
-      (digitContainer as any).parentNode.classList[digits[i] === '.' ? 'add' : 'remove']('dot');
+      (digitContainer as any).parentNode.classList[
+        digits[i] === this.decimalSeparator || digits[i] === this.thousandSeparator ? 'add' : 'remove'
+      ]('dot');
     }
   }
 
